@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<style type="text/css">
+			#myPlayer2{
+				width: 200px;
+				height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<video muted autoplay class="video_flv" style="object-fit: inherit; " id="myPlayer2" ref="myPlayer2"></video>
+		<!-- uni 的 SDK -->
+		<script type="text/javascript" src="https://unpkg.com/@dcloudio/uni-webview-js@0.0.1/index.js"></script>
+		<script type="text/javascript" src="./flv.min.js"></script>
+		<script type="text/javascript">
+			let flvPlayer;
+			document.addEventListener('UniAppJSBridgeReady', function() {
+				console.log('34232343',flvjs);
+				let videoElement = document.getElementById('myPlayer2')
+				if (flvjs.isSupported()) {
+					flvPlayer = flvjs.createPlayer({
+						type: "flv",
+						isLive: true,
+						hasAudio: false,
+						hasVideo: true,
+						enableStashBuffer: true,
+						cors: true,
+						url: 'https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-360p.flv', //你的url地址
+					});
+					flvPlayer.attachMediaElement(videoElement);
+					flvPlayer.load();
+					flvPlayer.play();
+				}
+			});
+		</script>
+	</body>
+</html>
